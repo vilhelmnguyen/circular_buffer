@@ -43,3 +43,10 @@ For streaming or bounded-queue workloads where you want the most recent N items 
 ## The awkward edge
 
 `undefined` is a legitimate stored value, not a sentinel for "empty slot." If you need a sentinel to mean "no value," pick one your callers will never write (`null`, a Symbol, or a wrapper object) and check for it yourself. Slots freed by `read()` or `clear()` are set to `undefined` internally to avoid retaining references, which means you cannot distinguish an unset slot from a slot holding `undefined` — but you should never observe an unset slot through the public API anyway.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
