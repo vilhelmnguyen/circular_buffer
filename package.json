@@ -1,6 +1,6 @@
 {
   "name": "circular-buffer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Ring buffer with set size; drops oldest item at capacity.",
   "type": "module",
   "main": "src/index.js",
